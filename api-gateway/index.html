@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransSummary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212529;
+            background-image: url('background.png'); /* Background image */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: rgba(0, 123, 255, 0.85);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 40px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        form h2 {
+            margin-bottom: 20px;
+            color: #007BFF;
+            text-align: center;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+
+        .result, .error {
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .result {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        footer p {
+            color: #555;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.8em;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        TransSummary
+    </header>
+    <main>
+        <!-- Signup Form -->
+        <form id="signupForm">
+            <h2>Sign Up</h2>
+            <input type="email" id="signupEmail" placeholder="Enter your email" required>
+            <input type="password" id="signupPassword" placeholder="Enter your password" required>
+            <input type="text" id="signupFirstName" placeholder="Enter your first name" required>
+            <input type="text" id="signupLastName" placeholder="Enter your last name" required>
+            <button type="submit">Sign Up</button>
+            <div class="result" id="signupResult" style="display: none;"></div>
+            <div class="error" id="signupError" style="display: none;"></div>
+            <p>Already have an account? <a href="#" id="switchToLogin">Log in</a></p>
+        </form>
+
+        <!-- Login Form -->
+        <form id="loginForm" style="display: none;">
+            <h2>Log In</h2>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            <button type="submit">Log In</button>
+            <div class="result" id="loginResult" style="display: none;"></div>
+            <div class="error" id="loginError" style="display: none;"></div>
+            <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+        </form>
+
+        <!-- Action Selection -->
+        <div id="actionSelection" style="display: none;">
+            <button id="showTranslationFormBtn">Translate Text</button>
+            <button id="showSummarizationFormBtn">Summarize Text</button>
+        </div>
+
+        <!-- Translation Form -->
+        <form id="translationForm" style="display: none;">
+            <h2>Translate Text</h2>
+            <textarea id="textToTranslate" placeholder="Enter text to translate" rows="4"></textarea><br><br>
+            <select id="languageDirection">
+                <option value="en2ar">English to Arabic</option>
+                <option value="ar2en">Arabic to English</option>
+            </select><br><br>
+            <button type="submit">Translate</button>
+            <h3>Status:</h3>
+            <p id="translationStatus">Status: </p>
+            <p id="translationResult">Translation Result: </p>
+        </form>
+
+        <!-- Summarization Form -->
+        <form id="summarizationForm" style="display: none;">
+            <h2>Summarize Text</h2>
+            <textarea id="textToSummarize" placeholder="Enter text to summarize" rows="4"></textarea><br><br>
+
+            <!-- New Dropdown for Style Selection -->
+            <select id="summarizationStyle">
+                <option value="formal">Formal</option>
+                <option value="informal">Informal</option>
+                <option value="technical">Technical</option>
+            </select><br><br>
+
+            <button type="submit">Summarize</button>
+
+            <h3>Status:</h3>
+            <p id="summarizationStatus">Status: </p>
+            <p id="summarizationResult">Summary Result: </p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TransSummary. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const API_BASE_URL = 'http://localhost'; // Update this to your API gateway endpoint
+
+        function showMessage(containerId, message, isError = false) {
+            const container = document.getElementById(containerId);
+            container.style.display = 'block';
+            container.innerHTML = message;
+            container.className = isError ? 'error' : 'result';
+        }
+
+        // Switch between Signup and Login forms
+        document.getElementById('switchToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+
+        document.getElementById('switchToSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        });
+
+        // Signup
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const firstName = document.getElementById('signupFirstName').value;
+            const lastName = document.getElementById('signupLastName').value;
+
+            const userData = {
+                email,
+                password,
+                firstName,
+                lastName
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/users/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData),
+                });
+                const data = await response.json();
+
+                if (response.status === 201) {
+                    showMessage('signupResult', 'Sign Up successful! Please log in.');
+                } else {
+                    showMessage('signupError', data.message || 'Sign Up failed.', true);
+                }
+            } catch (error) {
+                showMessage('signupError', 'Error communicating with the server.', true);
+            }
+        });
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/users/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('loginResult', 'Login successful!');
+                    document.getElementById('actionSelection').style.display = 'block';
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('signupForm').style.display = 'none';
+                } else {
+                    showMessage('loginError', data.message || 'Login failed.', true);
+                }
+            } catch (error) {
+                showMessage('loginError', 'Error communicating with the server.', true);
+            }
+        });
+
+        // Show translation and summarization forms
+        document.getElementById('showTranslationFormBtn').addEventListener('click', () => {
+            document.getElementById('translationForm').style.display = 'block';
+            document.getElementById('summarizationForm').style.display = 'none';
+        });
+
+        document.getElementById('showSummarizationFormBtn').addEventListener('click', () => {
+            document.getElementById('summarizationForm').style.display = 'block';
+            document.getElementById('translationForm').style.display = 'none';
+        });
+
+        // Translation
+        document.getElementById('translationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = document.getElementById('textToTranslate').value;
+            const languageDirection = document.getElementById('languageDirection').value;  // Get language direction
+
+            if (!text) {
+                alert("Please enter text to translate.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/translate/${languageDirection}/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text}),  // Include language direction
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to send translation request.");
+                }
+
+                const data = await response.json();
+                document.getElementById("translationStatus").innerText = "Status: In Progress";
+                checkTranslationStatus(data.id);
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+
+        async function checkTranslationStatus(requestId) {
+            try {
+                const languageDirection = document.getElementById('languageDirection').value;  // Get language direction
+                const response = await fetch(`${API_BASE_URL}/translate/${languageDirection}/status/${requestId}`);
+                const data = await response.json();
+
+                if (data.status === "Completed") {
+                    document.getElementById("translationResult").innerText = `Translation: ${data.result}`;
+                    document.getElementById("translationStatus").innerText = "Status: Completed";
+                } else if (data.status === "Failed") {
+                    document.getElementById("translationResult").innerText = `Error: ${data.result}`;
+                    document.getElementById("translationStatus").innerText = "Status: Failed";
+                } else {
+                    setTimeout(() => checkTranslationStatus(requestId), 2000);
+                }
+            } catch (error) {
+                document.getElementById("translationStatus").innerText = "Status: Failed";
+                document.getElementById("translationResult").innerText = `Error: ${error.message}`;
+            }
+        }
+
+        // Summarization
+        document.getElementById('summarizationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = document.getElementById('textToSummarize').value;
+            const style = document.getElementById('summarizationStyle').value;  // Get the selected style
+
+            if (!text) {
+                alert("Please enter text to summarize.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/summarize`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, style }),  // Include the style in the request body
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to send summarization request.");
+                }
+
+                const data = await response.json();
+                document.getElementById("summarizationStatus").innerText = "Status: In Progress";
+                checkSummarizationStatus(data.task_id);
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+
+        async function checkSummarizationStatus(requestId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/summarize/status/${requestId}`);
+                const data = await response.json();
+
+                if (data.status === "Completed") {
+                    document.getElementById("summarizationResult").innerText = `Summary: ${data.result}`;
+                    document.getElementById("summarizationStatus").innerText = "Status: Completed";
+                } else if (data.status === "Failed") {
+                    document.getElementById("summarizationResult").innerText = `Error: ${data.result}`;
+                    document.getElementById("summarizationStatus").innerText = "Status: Failed";
+                } else {
+                    setTimeout(() => checkSummarizationStatus(requestId), 2000);
+                }
+            } catch (error) {
+                document.getElementById("summarizationStatus").innerText = "Status: Failed";
+                document.getElementById("summarizationResult").innerText = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
