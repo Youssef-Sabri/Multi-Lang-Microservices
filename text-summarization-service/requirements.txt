@@ -1,0 +1,6 @@
+Flask
+pydantic
+transformers==4.34.0
+torch==2.0.1
+kafka-python==2.0.2
+numpy<2
