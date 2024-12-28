@@ -1,82 +1,56 @@
-API Gateway Service
+API Gateway Project
 
-Description
-
-A web-based service acting as an API Gateway. It uses Nginx for routing and serves a front-end interface, packaged within a Docker container for ease of deployment.
-
-Table of Contents
-
-Installation
-
-Usage
-
-Features
-
-Project Structure
-
-Contributing
-
-License
-
-Installation
-
-Clone the Repository:
-
-git clone <repository-url>
-
-Navigate to the Project Directory:
-
-cd api-gateway
-
-Build the Docker Image:
-
-docker build -t api-gateway .
-
-Start the Docker Container:
-
-docker run -d -p 80:80 api-gateway
-
-Usage
-
-After starting the Docker container, access the application in your browser at http://localhost.
-
-Features
-
-Centralized API management.
-
-Dockerized deployment for streamlined setup.
-
-Nginx configuration for efficient routing.
-
-Front-end interface served via index.html.
+This project is designed as a web application served using Nginx and packaged within a Docker container. It includes configurations and assets necessary to deploy and run the gateway efficiently.
 
 Project Structure
 
 api-gateway/
-├── background.png   # Background image for the web interface
-├── Dockerfile       # Docker configuration file
-├── index.html       # Front-end HTML file
-├── nginx.conf       # Nginx server configuration
+├── background.png    # Image asset used in the project
+├── Dockerfile        # Docker configuration file
+├── index.html        # Main HTML file for the front-end
+├── nginx.conf        # Nginx server configuration
 
-Components
+Features
 
-background.png: Visual asset used in the front-end.
+Web Application: A static front-end provided by index.html.
 
-Dockerfile: Defines the environment for running the application in a Docker container.
+Nginx Server: Configured via nginx.conf to handle requests efficiently.
 
-index.html: Provides the user interface.
+Dockerized: Easily deployable using Docker.
 
-nginx.conf: Configures the Nginx server for optimal performance.
+Prerequisites
 
-Contributing
+Docker installed on your system.
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+Getting Started
 
+Clone the repository:
+
+git clone <repository-url>
+cd api-gateway
+
+Build the Docker image:
+
+docker build -t api-gateway .
+
+Run the Docker container:
+
+docker run -p 8080:80 api-gateway
+
+Open your browser and navigate to http://localhost:8080 to view the application.
+
+Configuration
+
+Nginx:
+The nginx.conf file is pre-configured for basic usage. Modify this file to adjust server settings.
+
+Project Assets
+
+background.png:
+An image asset included in the project, which may be used in the front-end design.
 ---
 
 ## 📦 Installation
 1. Clone the repository:
    ```bash
-   https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/tree/main/api-gateway
-  
-
+   https://github.com/salahezzt120/microservices-translation-summarization-platform.git
