@@ -47,3 +47,7 @@ services:
     url: http://localhost:5002
 ```
 
+## 📦 Installation
+1. Clone the repository:
+   ```bash
+   https://github.com/salahezzt120/microservices-translation-summarization-platform.git
