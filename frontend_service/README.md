@@ -77,4 +77,11 @@ frontend_service/
 - **api.js**: Handles API interactions.
 - **App.js**: Main application component.
 - **index.js**: Entry point for the React application.
+---
+
+
+## 📦 Installation
+1. Clone the repository:
+   ```bash
+   https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/tree/main/frontend_service
 
