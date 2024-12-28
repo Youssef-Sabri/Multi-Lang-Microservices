@@ -1,56 +1,37 @@
-API Gateway Project
+```markdown
+# API Gateway
 
-This project is designed as a web application served using Nginx and packaged within a Docker container. It includes configurations and assets necessary to deploy and run the gateway efficiently.
+## Overview
+The API Gateway is responsible for routing requests to the appropriate backend microservices, handling authentication, and aggregating responses. It acts as a single entry point for clients to interact with the various services of the cloud-native platform.
 
-Project Structure
+## Contents
+- `gateway.py`: Main script for the API Gateway.
+- `config.yaml`: Configuration file for setting up routes and services.
+- `requirements.txt`: Lists the Python dependencies required for the API Gateway.
 
-api-gateway/
-├── background.png    # Image asset used in the project
-├── Dockerfile        # Docker configuration file
-├── index.html        # Main HTML file for the front-end
-├── nginx.conf        # Nginx server configuration
+## Usage
+To start the API Gateway, navigate to this folder and execute the following commands:
+```bash
+pip install -r requirements.txt
+python gateway.py
+```
 
-Features
+## Dependencies
+- Python 3.8 or higher
+- Libraries listed in `requirements.txt`
 
-Web Application: A static front-end provided by index.html.
+## Configuration
+Update `config.yaml` to configure the routes and services. Example configuration:
+```yaml
+routes:
+  - path: /translate
+    service: translation_service
+  - path: /summarize
+    service: summarization_service
+services:
+  translation_service:
+    url: http://localhost:5001
+  summarization_service:
+    url: http://localhost:5002
+```
 
-Nginx Server: Configured via nginx.conf to handle requests efficiently.
-
-Dockerized: Easily deployable using Docker.
-
-Prerequisites
-
-Docker installed on your system.
-
-Getting Started
-
-Clone the repository:
-
-git clone <repository-url>
-cd api-gateway
-
-Build the Docker image:
-
-docker build -t api-gateway .
-
-Run the Docker container:
-
-docker run -p 8080:80 api-gateway
-
-Open your browser and navigate to http://localhost:8080 to view the application.
-
-Configuration
-
-Nginx:
-The nginx.conf file is pre-configured for basic usage. Modify this file to adjust server settings.
-
-Project Assets
-
-background.png:
-An image asset included in the project, which may be used in the front-end design.
----
-
-## 📦 Installation
-1. Clone the repository:
-   ```bash
-   https://github.com/salahezzt120/microservices-translation-summarization-platform.git
