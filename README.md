@@ -35,6 +35,44 @@ This platform is a cloud-native microservices-based solution for real-time trans
 
 ## 📦 **Installation**
 
+
+### **API Gateway**
+1. Clone the repository:
+    ```bash
+    cd microservices-translation-summarization-platform/api-gateway
+    ```
+2. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. Run the API Gateway:
+    ```bash
+    python gateway.py
+    ```
+4. Alternatively, build and run the Docker container:
+    ```bash
+    docker build -t api-gateway .
+    docker run -p 8000:8000 api-gateway
+    ```
+
+### **Frontend**
+1. Clone the repository:
+    ```bash
+    cd microservices-translation-summarization-platform/frontend
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Run the frontend application:
+    ```bash
+    npm start
+    ```
+4. Alternatively, build and run the Docker container:
+    ```bash
+    docker build -t frontend .
+    docker run -p 3000:3000 frontend
+    ```
 ### **EN2AR-Service (English to Arabic Translation)**
 1. Clone the repository:
     ```bash
