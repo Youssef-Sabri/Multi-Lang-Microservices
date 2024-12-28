@@ -48,3 +48,7 @@ service:
   port: 5005
   summarizer_model: "facebook/bart-large-cnn"
 ```
+## 📦 Installation
+1. Clone the repository:
+   ```bash
+   https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/tree/main/text-summarization-service
