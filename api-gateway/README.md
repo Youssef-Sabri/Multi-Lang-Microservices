@@ -27,10 +27,6 @@ python gateway.py
     ```bash
     cd cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/api-gateway
     ```
-3. Install the required Python libraries:
-    ```bash
-    pip install -r requirements.txt
-    ```
 
 ## Dependencies
 - Python 3.8 or higher
