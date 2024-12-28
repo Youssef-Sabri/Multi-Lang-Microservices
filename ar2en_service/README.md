@@ -1,109 +1,55 @@
-ar2en_service
+# Arabic to English Translation Service (ar2en_service)
 
-Description
+## Overview
+The Arabic to English Translation Service (`ar2en_service`) is a microservice responsible for translating text from Arabic to English in real-time. This service is part of the cloud-native platform designed for real-time translation and text summarization.
 
-A Python-based service designed to handle functionalities such as [briefly describe functionality, e.g., "translation services from Arabic to English" or "consumer messaging systems"]. This service integrates seamlessly with APIs and is optimized for deployment in containerized environments.
+## Contents
+- `ar2en_service.py`: Main script for the translation service.
+- `requirements.txt`: Lists the Python dependencies required for the service.
+- `config.yaml`: Configuration file for setting up the service parameters.
 
-Table of Contents
+## Installation and Requirements
 
-Installation
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package installer)
 
-Usage
+### Installation Steps
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices.git
+    ```
+2. Navigate to the `ar2en_service` folder:
+    ```bash
+    cd cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/ar2en_service
+    ```
+3. Install the required Python libraries:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Features
+## Usage
+To start the Arabic to English Translation Service, execute the following command:
+```bash
+python ar2en_service.py
+```
 
-Project Structure
+## Dependencies
+The `requirements.txt` file includes the necessary dependencies for the translation service. Here are the primary libraries:
+- FastAPI
+- Uvicorn
+- Translation libraries (e.g., `transformers`, `torch`)
 
-Contributing
+## Configuration
+Update `config.yaml` to configure the service parameters. Example configuration:
+```yaml
+service:
+  name: ar2en_translation_service
+  port: 5003
+  translator_model: "Helsinki-NLP/opus-mt-ar-en"
+```
 
-License
-
-Installation
-
-Prerequisites
-
-Python 3.8 or later
-
-Docker (if running in a containerized environment)
-
-Pip for dependency management
-
-Steps
-
-Clone the repository:
-
-git clone <repository-url>
-
-Navigate to the project directory:
-
-cd ar2en_service
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-(Optional) Build and run the Docker container:
-
-docker build -t ar2en_service .
-docker run -p 8000:8000 ar2en_service
-
-Usage
-
-Run the main application:
-
-python main.py
-
-Access the service at the configured endpoint (e.g., http://localhost:8000) and use the available features:
-
-[Feature 1: Brief description]
-
-[Feature 2: Brief description]
-
-Features
-
-Lightweight and containerized using Docker.
-
-[Feature 1: Brief description]
-
-[Feature 2: Brief description]
-
-Clean and modular Python code structure.
-
-Project Structure
-
-ar2en_service/
-├── consumer.py        # Consumer logic for the service
-├── main.py            # Entry point of the application
-├── Dockerfile         # Docker configuration
-├── requirements.txt   # Python dependencies
-└── __init__.py        # Python package marker
-
-Components
-
-consumer.py: Contains the core logic for consuming and processing messages.
-
-main.py: Acts as the entry point of the application.
-
-Dockerfile: Defines the containerization setup.
-
-requirements.txt: Specifies the Python dependencies.
-
-init.py: Identifies the folder as a Python package.
-
-Contributing
-
-Contributions are welcome! Please follow these steps:
-
-Fork this repository.
-
-Create a new branch: git checkout -b feature-name.
-
-Commit your changes: git commit -m 'Add some feature'.
-
-Push to the branch: git push origin feature-name.
-
-Submit a pull request.
-
-License
-
-[Specify the license, e.g., MIT License.]
+## 📦 Installation
+1. Clone the repository:
+   ```bash
+   https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/tree/main/ar2en_service
