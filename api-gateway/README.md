@@ -14,6 +14,23 @@ To start the API Gateway, navigate to this folder and execute the following comm
 pip install -r requirements.txt
 python gateway.py
 ```
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### Installation Steps
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices.git
+    ```
+2. Navigate to the `api-gateway` folder:
+    ```bash
+    cd cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/api-gateway
+    ```
+3. Install the required Python libraries:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ## Dependencies
 - Python 3.8 or higher
