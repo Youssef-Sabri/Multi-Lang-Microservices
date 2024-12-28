@@ -50,4 +50,4 @@ services:
 ## 📦 Installation
 1. Clone the repository:
    ```bash
-   https://github.com/salahezzt120/microservices-translation-summarization-platform.git
+   https://github.com/Youssef-Sabri/cse363-cloud-computing-Cloud_warriors-Multi-Lang-Microservices/tree/main/api-gateway
