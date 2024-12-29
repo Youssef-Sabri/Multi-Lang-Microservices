@@ -17,9 +17,11 @@ jobs:
     - name: Checkout Code from GitHub
       uses: actions/checkout@v2  # Checkout the code so that Docker can access the Dockerfile
 
-    # Step 2: Log in to Amazon ECR
+    # Step 2: Log in to Amazon ECR (Explicitly specify the region)
     - name: Login to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v1  # Uses AWS action to authenticate with ECR
+      uses: aws-actions/amazon-ecr-login@v1
+      with:
+        region: us-east-1 # Pass the AWS region from GitHub Secrets (e.g., us-east-1)
 
     # Step 3: Set up Docker Buildx (optional for advanced Docker builds)
     - name: Set up Docker Buildx
