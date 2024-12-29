@@ -17,23 +17,29 @@ jobs:
     - name: Checkout Code from GitHub
       uses: actions/checkout@v2  # Checkout the code so that Docker can access the Dockerfile
 
-    # Step 2: Log in to Amazon ECR (Explicitly specify the region)
+    # Step 2: Configure AWS Credentials (Set Region and Keys)
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    # Step 3: Log in to Amazon ECR
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
-      with:
-        region: us-east-1 # Pass the AWS region from GitHub Secrets (e.g., us-east-1)
 
-    # Step 3: Set up Docker Buildx (optional for advanced Docker builds)
+    # Step 4: Set up Docker Buildx (optional for advanced Docker builds)
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2  # Set up Buildx to build multi-platform images
 
-    # Step 4: Build the Docker image
+    # Step 5: Build the Docker image
     - name: Build Docker Image
       run: |
         docker build -t ${{ secrets.ECR_REPOSITORY }} .  # Build the Docker image using the repository secret
         docker tag ${{ secrets.ECR_REPOSITORY }}:latest public.ecr.aws/r0i6v8x7/${{ secrets.ECR_REPOSITORY }}:latest  # Tag the image for ECR
 
-    # Step 5: Push Docker Image to Amazon ECR
+    # Step 6: Push Docker Image to Amazon ECR
     - name: Push Docker Image to ECR
       run: |
         docker push public.ecr.aws/r0i6v8x7/${{ secrets.ECR_REPOSITORY }}:latest  # Push the Docker image to the correct ECR repository
